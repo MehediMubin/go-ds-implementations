@@ -25,15 +25,33 @@ func InitLRUCache (capacity int) *LRUCache {
 }
 
 func (lru *LRUCache) Get (key int) {
-
 } 
 
 func (lru *LRUCache) Put (key, value int) {
-
+	element, found := lru.cache[key]
+	if found {
+		element.Value.(*Entry).value = value
+		lru.list.MoveToFront(element)
+		fmt.Printf("Updated key %d with value %d\n", key, value)
+	} else {
+		if lru.list.Len() >= lru.capacity {
+			evict := lru.list.Back()
+			if evict != nil {
+				evictedEntry := evict.Value.(*Entry)
+				delete(lru.cache, evictedEntry.key)
+				lru.list.Remove(evict)
+				fmt.Printf("Evicted key %d\n", evictedEntry.key)
+			}
+		}
+		entry := &Entry{key, value}
+		element = lru.list.PushFront(entry)
+		lru.cache[key] = element
+		fmt.Printf("Added key %d with value %d\n", key, value)
+	}
 }
 
 func (lru *LRUCache) Display() {
-	
+
 }
 
 func main() {
