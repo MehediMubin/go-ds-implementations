@@ -5,7 +5,7 @@ import "container/list"
 type LRUCache struct {
 	capacity int
 	cache    map[int]*list.Element
-	list list.List
+	list 		 *list.List
 }
 
 type Entry struct {
@@ -17,7 +17,7 @@ func NewLRUCache (capacity int) *LRUCache {
 	return &LRUCache{
 		capacity: capacity,
 		cache: make(map[int]*list.Element),
-		list: *list.New(),
+		list: list.New(),
 	}
 }
 
