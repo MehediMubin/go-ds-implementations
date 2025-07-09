@@ -24,14 +24,17 @@ func InitLRUCache (capacity int) *LRUCache {
 	}
 }
 
-func (lru *LRUCache) Get (key int) {
+func (lru *LRUCache) Get (key int) (int, bool) {
 	element, found := lru.cache[key]
 	if found {
 		lru.list.MoveToFront(element)
-		fmt.Printf("Accessed key %d: %d\n", key, element.Value.(*Entry).value)
-	} else {
-		fmt.Printf("Key %d not found in cache\n", key)
+		entry := element.Value.(*Entry)
+		fmt.Printf("Accessed key %d: %d\n", key, entry.value)
+		return entry.value, true
 	}
+
+	fmt.Printf("Key %d not found in cache\n", key)
+	return -1, false
 } 
 
 func (lru *LRUCache) Put (key, value int) {
