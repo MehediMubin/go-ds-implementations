@@ -61,7 +61,12 @@ func (lru *LRUCache) Put (key, value int) {
 }
 
 func (lru *LRUCache) Display() {
-
+	fmt.Print("Cache State: ")
+	for element := lru.list.Front(); element != nil; element = element.Next() {
+		entry := element.Value.(*Entry)
+		fmt.Printf("%d:%d ", entry.key, entry.value)
+	}
+	fmt.Println()
 }
 
 func main() {
