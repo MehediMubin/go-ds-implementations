@@ -8,7 +8,7 @@ import (
 type LRUCache struct {
 	capacity int
 	cache    map[int]*list.Element
-	list *list.List
+	list   *list.List
 }
 
 type Entry struct {
