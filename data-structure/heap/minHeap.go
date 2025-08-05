@@ -8,11 +8,22 @@ type MinHeap struct {
 
 func (h *MinHeap) Insert(val int) {
 	h.data = append(h.data, val)
-	h.HeapifyUp(len(h.data) - 1)
+	h.heapifyUp(len(h.data) - 1)
 }
 
-func (h *MinHeap) HeapifyUp(index int) {
+func (h *MinHeap) heapifyUp(index int) {
+	for h.data[parent(index)] > h.data[index] {
+		h.swap(parent(index), index)
+		index = parent(index)
+	}
+}
 
+func parent(i int) int {
+	return (i - 1) / 2
+}
+
+func (h *MinHeap) swap(i, j int) {
+	h.data[i], h.data[j] = h.data[j], h.data[i]
 }
 
 func main() {
