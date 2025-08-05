@@ -28,6 +28,24 @@ func (h *MinHeap) Peek() (int, error) {
 	return h.data[0], nil
 }
 
+func (h *MinHeap) ExtractMin() (int, error) {
+	if len(h.data) == 0 {
+		return 0, fmt.Errorf("heap is empty")
+	}
+
+	minElement := h.data[0]
+	lastIndex := len(h.data) - 1
+
+	h.data[0] = h.data[lastIndex]
+	h.heapifyDown(0)
+
+	return minElement, nil
+}
+
+func (h *MinHeap) heapifyDown(index int) {
+
+}
+
 func parent(i int) int {
 	return (i - 1) / 2
 }
