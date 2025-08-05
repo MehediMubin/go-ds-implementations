@@ -37,17 +37,44 @@ func (h *MinHeap) ExtractMin() (int, error) {
 	lastIndex := len(h.data) - 1
 
 	h.data[0] = h.data[lastIndex]
-	h.heapifyDown(0)
+	h.data = h.data[:lastIndex]
 
+	h.heapifyDown(0)
 	return minElement, nil
 }
 
 func (h *MinHeap) heapifyDown(index int) {
+	lastIndex := len(h.data) - 1
 
+	for {
+		left, right := leftChild(index), rightChild(index)
+		smallest := index 
+
+		if left <= lastIndex && h.data[left] < h.data[smallest] {
+			smallest = left
+		}
+		if right <= lastIndex && h.data[right] < h.data[smallest] {
+			smallest = right
+		}
+		if smallest == index {
+			break
+		}
+
+		h.swap(smallest, index)
+		index = smallest
+	}
 }
 
 func parent(i int) int {
 	return (i - 1) / 2
+}
+
+func leftChild(i int) int {
+	return 2 * i + 1
+}
+
+func rightChild(i int) int {
+	return 2 * i + 2
 }
 
 func (h *MinHeap) swap(i, j int) {
@@ -63,4 +90,9 @@ func main() {
 	heap.Insert(3)
 
 	fmt.Println(heap.data)
+
+	minElement, _ := heap.ExtractMin()
+	fmt.Println("Extracted min:", minElement)
+
+	fmt.Println(heap.data)	
 }
