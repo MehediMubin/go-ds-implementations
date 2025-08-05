@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type MinHeap struct {
 	data []int
@@ -16,6 +18,14 @@ func (h *MinHeap) heapifyUp(index int) {
 		h.swap(parent(index), index)
 		index = parent(index)
 	}
+}
+
+func (h *MinHeap) Peek() (int, error) {
+	if len(h.data) == 0 {
+		return 0, fmt.Errorf("heap is empty")
+	}
+
+	return h.data[0], nil
 }
 
 func parent(i int) int {
