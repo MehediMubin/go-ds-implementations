@@ -2,11 +2,13 @@
 package heapsort
 
 import (
-	"github.com/MehediMubin/go-ds-implementations/data-structure/heap"
+	// "github.com/MehediMubin/go-ds-implementations/data-structure/heap/maxHeap"
+	"github.com/MehediMubin/go-ds-implementations/data-structure/heap/minHeap"
 )
 
 func HeapSort(arr []int) ([]int, error) {
-	h := heap.NewMinHeap()
+	h := minHeap.NewMinHeap()
+	// h := maxHeap.NewMaxHeap()
 
 	for _, val := range arr {
 		h.Insert(val)

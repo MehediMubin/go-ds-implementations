@@ -1,31 +1,31 @@
 // To run this file as a standalone program, change the package name to `main` and uncomment the `main()` function.
-package heap
+package maxHeap
 
 import (
 	"fmt"
 )
 
-type MinHeap struct {
+type MaxHeap struct {
 	data []int
 }
 
-func NewMinHeap() *MinHeap {
-	return &MinHeap{}
+func NewMaxHeap() *MaxHeap {
+	return &MaxHeap{}
 }
 
-func (h *MinHeap) Insert(val int) {
+func (h *MaxHeap) Insert(val int) {
 	h.data = append(h.data, val)
 	h.heapifyUp(len(h.data) - 1)
 }
 
-func (h *MinHeap) heapifyUp(index int) {
-	for h.data[parent(index)] > h.data[index] {
+func (h *MaxHeap) heapifyUp(index int) {
+	for h.data[parent(index)] < h.data[index] {
 		h.swap(parent(index), index)
 		index = parent(index)
 	}
 }
 
-func (h *MinHeap) Peek() (int, error) {
+func (h *MaxHeap) Peek() (int, error) {
 	if len(h.data) == 0 {
 		return 0, fmt.Errorf("heap is empty")
 	}
@@ -33,7 +33,7 @@ func (h *MinHeap) Peek() (int, error) {
 	return h.data[0], nil
 }
 
-func (h *MinHeap) ExtractMin() (int, error) {
+func (h *MaxHeap) ExtractMax() (int, error) {
 	if len(h.data) == 0 {
 		return 0, fmt.Errorf("heap is empty")
 	}
@@ -48,17 +48,17 @@ func (h *MinHeap) ExtractMin() (int, error) {
 	return minElement, nil
 }
 
-func (h *MinHeap) heapifyDown(index int) {
+func (h *MaxHeap) heapifyDown(index int) {
 	lastIndex := len(h.data) - 1
 
 	for {
 		left, right := leftChild(index), rightChild(index)
 		smallest := index 
 
-		if left <= lastIndex && h.data[left] < h.data[smallest] {
+		if left <= lastIndex && h.data[left] > h.data[smallest] {
 			smallest = left
 		}
-		if right <= lastIndex && h.data[right] < h.data[smallest] {
+		if right <= lastIndex && h.data[right] > h.data[smallest] {
 			smallest = right
 		}
 		if smallest == index {
@@ -82,11 +82,11 @@ func rightChild(i int) int {
 	return 2 * i + 2
 }
 
-func (h *MinHeap) swap(i, j int) {
+func (h *MaxHeap) swap(i, j int) {
 	h.data[i], h.data[j] = h.data[j], h.data[i]
 }
 
-func (h *MinHeap) IsEmpty() bool {
+func (h *MaxHeap) IsEmpty() bool {
 	if len(h.data) == 0 {
 		return true
 	} else {
@@ -95,17 +95,17 @@ func (h *MinHeap) IsEmpty() bool {
 }
 
 // func main() {
-// 	heap := NewMinHeap()
+// 	heap := NewMaxHeap()
 
-// 	heap.Insert(10)
-// 	heap.Insert(5)
 // 	heap.Insert(2)
+// 	heap.Insert(5)
+// 	heap.Insert(10)
 // 	heap.Insert(3)
 
 // 	fmt.Println(heap.data)
 
-// 	minElement, _ := heap.ExtractMin()
-// 	fmt.Println("Extracted min:", minElement)
+// 	maxElement, _ := heap.ExtractMax()
+// 	fmt.Println("Extracted min:", maxElement)
 
 // 	fmt.Println(heap.data)	
 // }
