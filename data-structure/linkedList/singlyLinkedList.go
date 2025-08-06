@@ -1,14 +1,10 @@
+// To run this file as a standalone program, change the package name to `main` and uncomment the `main()` function.
 package main
 
 import "fmt"
 
-type Person struct {
-	name string
-	age  int
-}
-
 type Node struct {
-	data Person
+	data int
 	next *Node
 }
 
@@ -16,12 +12,12 @@ type LinkedList struct {
 	head *Node
 }
 
-func (list *LinkedList) prepend(data Person) {
+func (list *LinkedList) Prepend(data int) {
 	newNode := &Node{data: data, next: list.head}
 	list.head = newNode
 }
 
-func (list *LinkedList) append(data Person) {
+func (list *LinkedList) Append(data int) {
 	newNode := &Node{data: data, next: nil}
 
 	if list.isEmpty() {
@@ -36,10 +32,10 @@ func (list *LinkedList) append(data Person) {
 	element.next = newNode
 }
 
-func (list *LinkedList) popFront() Person {
+func (list *LinkedList) PopFront() int {
 	if list.isEmpty() {
 		fmt.Println("The LinkedList is empty")
-		return Person{}
+		return 0
 	}
 
 	data := list.head.data
@@ -47,10 +43,10 @@ func (list *LinkedList) popFront() Person {
 	return data
 }
 
-func (list *LinkedList) popBack() Person {
+func (list *LinkedList) PopBack() int {
 	if list.isEmpty() {
 		fmt.Println("The LinkedList is empty")
-		return Person{}
+		return 0
 	}
 
 	if list.head.next == nil {
@@ -73,7 +69,7 @@ func (list *LinkedList) isEmpty() bool {
 	return list.head == nil
 }
 
-func (list *LinkedList) size() int {
+func (list *LinkedList) Size() int {
 	if list.isEmpty() {
 		return 0
 	}
@@ -85,7 +81,7 @@ func (list *LinkedList) size() int {
 	return count
 }
 
-func (list *LinkedList) contains(value Person) bool {
+func (list *LinkedList) Contains(value int) bool {
 	for element := list.head; element != nil; element = element.next {
 		if element.data == value {
 			return true
@@ -94,7 +90,7 @@ func (list *LinkedList) contains(value Person) bool {
 	return false
 }
 
-func (list *LinkedList) print() {
+func (list *LinkedList) Print() {
 	if list.isEmpty() {
 		fmt.Println("The LinkedList is empty")
 		return
@@ -106,28 +102,28 @@ func (list *LinkedList) print() {
 	}
 }
 
-func (list *LinkedList) clear() {
+func (list *LinkedList) Clear() {
 	list.head = nil
 }
 
-func main() {
-	var list LinkedList
+// func main() {
+// 	var list LinkedList
 
-	list.append(Person{"Mehedi", 27})
-	list.append(Person{"Hasan", 17})
-	list.append(Person{"Mubin", 67})
+// 	list.Append(10)
+// 	list.Append(20)
+// 	list.Append(30)
 
-	list.popBack()
-	list.popFront()
+// 	list.PopBack()
+// 	list.PopFront()
 
-	fmt.Println("Size of list:", list.size())
+// 	fmt.Println("Size of list:", list.Size())
 
-	value := Person{"Hasan", 17}
-	if list.contains(value) {
-		fmt.Println(value, "exists")
-	} else {
-		fmt.Println(value, "doesn't exist")
-	}
+// 	value := 10
+// 	if list.Contains(value) {
+// 		fmt.Println(value, "exists")
+// 	} else {
+// 		fmt.Println(value, "doesn't exist")
+// 	}
 
-	list.print()
-}
+// 	list.Print()
+// }
