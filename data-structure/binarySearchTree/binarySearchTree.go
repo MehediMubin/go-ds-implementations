@@ -1,4 +1,5 @@
-package main
+// To run this file as a standalone program, change the package name to `main` and uncomment the `main()` function.
+package binarySearchTree
 
 import "fmt"
 
@@ -66,16 +67,14 @@ func (n *Node) PostOrder() {
 	fmt.Print(n.Value, " ")
 }
 
-func main() {
-	var root *Node
+// func main() {
+// 	var root *Node
 
-	values := []int{3, 1, 2, 5, 4, 6}
-	for _, v := range values {
-		root = root.Insert(v)
-	}
+// 	values := []int{3, 1, 2, 5, 4, 6}
+// 	for _, v := range values {
+// 		root = root.Insert(v)
+// 	}
 
-	// root.InOrder()
-	// root.PreOrder()
-	root.PostOrder()
-	fmt.Println()
-}
+// 	root.PostOrder()
+// 	fmt.Println()
+// }
