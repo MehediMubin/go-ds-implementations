@@ -1,4 +1,5 @@
-package main
+// To run this file as a standalone program, change the package name to `main` and uncomment the `main()` function.
+package queue
 
 import "fmt"
 
@@ -61,21 +62,21 @@ func (q *Queue) Contains(number int) bool {
 	return false
 }
 
-func main() {
-	var q Queue
-	q.Push(10)
-	q.Push(11)
-	q.Push(12)
-	q.Push(13)
+// func main() {
+// 	var q Queue
+// 	q.Push(10)
+// 	q.Push(11)
+// 	q.Push(12)
+// 	q.Push(13)
 
-	fmt.Println("First element in the Queue", q.Front())
-	fmt.Println("Last element in the Queue", q.Back())
-	fmt.Println("Size of the Queue: ", q.Size())
+// 	fmt.Println("First element in the Queue", q.Front())
+// 	fmt.Println("Last element in the Queue", q.Back())
+// 	fmt.Println("Size of the Queue: ", q.Size())
 
-	fmt.Println("Element Popped", q.Pop())		
-	fmt.Println("Current First element in the Queue:", q.Front())
+// 	fmt.Println("Element Popped", q.Pop())		
+// 	fmt.Println("Current First element in the Queue:", q.Front())
 	
-	q.Clear()
-	fmt.Println("Cleared the Queue")
-	fmt.Println("Current size of the Queue:", q.Size())
-}
+// 	q.Clear()
+// 	fmt.Println("Cleared the Queue")
+// 	fmt.Println("Current size of the Queue:", q.Size())
+// }
