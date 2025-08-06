@@ -1,5 +1,5 @@
 // To run this file as a standalone program, change the package name to `main` and uncomment the `main()` function.
-package main
+package linkedList
 
 import "fmt"
 
