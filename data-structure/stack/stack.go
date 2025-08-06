@@ -1,27 +1,23 @@
-package main
+// To run this file as a standalone program, change the package name to `main` and uncomment the `main()` function.
+package stack
 
 import (
 	"slices"
 	"fmt"
 )
 
-type Person struct {
-	name string
-	age  int
-}
-
 type Stack struct {
-	items []Person
+	items []int
 }
 
-func (stk *Stack) push(p Person) {
-	stk.items = append(stk.items, p)
+func (stk *Stack) Push(number int) {
+	stk.items = append(stk.items, number)
 }
 
-func (stk *Stack) pop() Person {
+func (stk *Stack) Pop() int {
 	if stk.isEmpty() {
 		fmt.Println("There is no element in the Stack")
-		return Person{}
+		return 0
 	}
 
 	lastItem := stk.items[len(stk.items) - 1]
@@ -29,34 +25,34 @@ func (stk *Stack) pop() Person {
 	return lastItem
 }
 
-func (stk *Stack) top() Person {
+func (stk *Stack) Top() int {
 	if stk.isEmpty() {
 		fmt.Println("There is no element in the Stack")
-		return Person{}
+		return 0
 	}
 
 	return stk.items[len(stk.items) - 1]
 }
 
 func (stk *Stack) isEmpty() bool {
-	return stk.size() == 0
+	return stk.Size() == 0
 }
 
-func (stk *Stack) size() int {
+func (stk *Stack) Size() int {
 	return len(stk.items)
 }
 
-func (stk *Stack) clear() {
+func (stk *Stack) Clear() {
 	fmt.Println("Clearing the stack....")
 	stk.items = stk.items[:0]
 	fmt.Println("Cleared the stack.")
 }
 
-func (stk *Stack) contains(item Person) bool {
-	return slices.Contains(stk.items, item)
+func (stk *Stack) contains(number int) bool {
+	return slices.Contains(stk.items, number)
 }
 
-func (stk *Stack) print() {
+func (stk *Stack) Print() {
 	if stk.isEmpty() {
 		fmt.Println("There is no item in the Stack")
 		return
@@ -69,23 +65,23 @@ func (stk *Stack) print() {
 	fmt.Println("Printing Done")
 }
 
-func main() {
-	var stk Stack
+// func main() {
+// 	var stk Stack
 
-	stk.push(Person{"Mehedi", 27})
-	stk.push(Person{"Hasan", 10})
-	stk.push(Person{"Mubin", 12})
+// 	stk.Push(27)
+// 	stk.Push(10)
+// 	stk.Push(12)
 
-	fmt.Println(stk.top())
-	fmt.Println(stk.pop())
+// 	fmt.Println(stk.Top())
+// 	fmt.Println(stk.Pop())
 
-	if stk.contains(Person{"Mubin", 12}) {
-		fmt.Println("Mubin is in the stack")
-	} else {
-		fmt.Println("Mubin is not in the stack")
-	}
+// 	if stk.contains(12) {
+// 		fmt.Println(12, "is in the stack")
+// 	} else {
+// 		fmt.Println(12, "is not in the stack")
+// 	}
 
-	// stk.clear()
+// 	// stk.clear()
 
-	stk.print()
-}
+// 	stk.Print()
+// }
