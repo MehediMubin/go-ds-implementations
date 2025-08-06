@@ -1,4 +1,5 @@
-package main
+// To run this file as a standalone program, change the package name to `main` and uncomment the `main()` function.
+package heap
 
 import (
 	"fmt"
@@ -6,6 +7,10 @@ import (
 
 type MinHeap struct {
 	data []int
+}
+
+func NewMinHeap() *MinHeap {
+	return &MinHeap{}
 }
 
 func (h *MinHeap) Insert(val int) {
@@ -81,18 +86,26 @@ func (h *MinHeap) swap(i, j int) {
 	h.data[i], h.data[j] = h.data[j], h.data[i]
 }
 
-func main() {
-	heap := &MinHeap{}
-
-	heap.Insert(10)
-	heap.Insert(5)
-	heap.Insert(2)
-	heap.Insert(3)
-
-	fmt.Println(heap.data)
-
-	minElement, _ := heap.ExtractMin()
-	fmt.Println("Extracted min:", minElement)
-
-	fmt.Println(heap.data)	
+func (h *MinHeap) IsEmpty() bool {
+	if len(h.data) == 0 {
+		return true
+	} else {
+		return false
+	}
 }
+
+// func main() {
+// 	heap := NewMinHeap()
+
+// 	heap.Insert(10)
+// 	heap.Insert(5)
+// 	heap.Insert(2)
+// 	heap.Insert(3)
+
+// 	fmt.Println(heap.data)
+
+// 	minElement, _ := heap.ExtractMin()
+// 	fmt.Println("Extracted min:", minElement)
+
+// 	fmt.Println(heap.data)	
+// }
