@@ -2,17 +2,12 @@ package main
 
 import "fmt"
 
-type Person struct {
-	name string
-	age  int
-}
-
 type Queue struct {
-	items []Person
+	items []int
 }
 
-func (q *Queue) push(name string, age int) {
-	q.items = append(q.items, Person{name, age})
+func (q *Queue) Push(number int) {
+	q.items = append(q.items, number)
 }
 
 func (q *Queue) isEmpty() bool {
@@ -23,7 +18,7 @@ func (q *Queue) isEmpty() bool {
 	}
 }
 
-func (q *Queue) pop() Person {
+func (q *Queue) Pop() int {
 	if q.isEmpty() {
 		fmt.Println("There is no element in the Queue")
 	}
@@ -33,7 +28,7 @@ func (q *Queue) pop() Person {
 	return firstElem
 }
 
-func (q *Queue) front() Person {
+func (q *Queue) Front() int {
 	if q.isEmpty() {
 		fmt.Println("There is no element in the Queue")
 	}
@@ -41,7 +36,7 @@ func (q *Queue) front() Person {
 	return q.items[0]
 }
 
-func (q *Queue) back() Person {
+func (q *Queue) Back() int {
 	if q.isEmpty() {
 		fmt.Println("There is no element in the Queue")
 	}
@@ -49,17 +44,17 @@ func (q *Queue) back() Person {
 	return q.items[len(q.items) - 1]
 }
 
-func (q *Queue) size() int {
+func (q *Queue) Size() int {
 	return len(q.items)
 }
 
-func (q *Queue) clear() {
+func (q *Queue) Clear() {
 	q.items = q.items[:0]
 }
 
-func (q *Queue) contains(name string, age int) bool {
-	for _, person := range q.items {
-		if person.name == name && person.age == age {
+func (q *Queue) Contains(number int) bool {
+	for _, value := range q.items {
+		if value == number {
 			return true
 		}
 	}
@@ -68,19 +63,19 @@ func (q *Queue) contains(name string, age int) bool {
 
 func main() {
 	var q Queue
-	q.push("Mehedi", 10)
-	q.push("Hasan", 11)
-	q.push("Mubin", 12)
-	q.push("Muhin", 13)
+	q.Push(10)
+	q.Push(11)
+	q.Push(12)
+	q.Push(13)
 
-	fmt.Println("First element in the Queue", q.front())
-	fmt.Println("Last element in the Queue", q.back())
-	fmt.Println("Size of the Queue: ", q.size())
+	fmt.Println("First element in the Queue", q.Front())
+	fmt.Println("Last element in the Queue", q.Back())
+	fmt.Println("Size of the Queue: ", q.Size())
 
-	fmt.Println("Element Popped", q.pop())		
-	fmt.Println("Current First element in the Queue:", q.front())
+	fmt.Println("Element Popped", q.Pop())		
+	fmt.Println("Current First element in the Queue:", q.Front())
 	
-	q.clear()
+	q.Clear()
 	fmt.Println("Cleared the Queue")
-	fmt.Println("Current size of the Queue:", q.size())
+	fmt.Println("Current size of the Queue:", q.Size())
 }
